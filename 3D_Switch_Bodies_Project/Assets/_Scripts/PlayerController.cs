@@ -14,12 +14,33 @@ public class PlayerController : MonoBehaviour
     {
         if (currentControlledCreature != null)
         {
-            currentControlledCreature.GetComponent<Creature>().enabled = false;
+            // Disable ALL components on the current creature
+            foreach (var comp in currentControlledCreature.GetComponentsInChildren<MonoBehaviour>())
+            {
+                if (comp is Creature || comp is BatMovementDaryl || comp is HumanMovementDaryl)
+                {
+                    comp.enabled = false;
+                }
+            }
         }
 
         currentControlledCreature = newCreature;
 
-        currentControlledCreature.GetComponent<Creature>().enabled = true;
+        // Enable only the necessary components on the new creature
+        var creature = currentControlledCreature.GetComponentInChildren<Creature>();
+        if (creature != null)
+        {
+            creature.enabled = true;
+
+            // Get the specific movement component
+            var movement = currentControlledCreature.GetComponentInChildren<BatMovementDaryl>() 
+                          ?? (MonoBehaviour)currentControlledCreature.GetComponentInChildren<HumanMovementDaryl>();
+            
+            if (movement != null)
+            {
+                movement.enabled = true;
+            }
+        }
 
         OnControlSwitch?.Invoke();
     }

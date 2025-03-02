@@ -14,6 +14,11 @@ public class Bird : Creature
         }
     }
 
+    protected override void FixedUpdate()
+    {
+        Debug.Log("Bird is moving!");
+    }
+
     private void Fly()
     {
         Debug.Log("Flying!");
