@@ -16,6 +16,6 @@ public class Dog : Creature
 
     private void Bark()
     {
-        Debug.Log("Woof!");
+        //Debug.Log("Woof!");
     }
 }

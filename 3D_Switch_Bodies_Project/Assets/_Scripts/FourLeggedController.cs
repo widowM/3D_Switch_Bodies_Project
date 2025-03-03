@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FirstPersonController : MonoBehaviour
+public class FourLeggedController : Creature
 {
     public float moveSpeed = 5f;
     public float mouseSensitivity = 100f;
@@ -37,7 +37,7 @@ public class FirstPersonController : MonoBehaviour
         cameraOriginalPosition = playerCamera.localPosition; // Store the original camera position
     }
 
-    void Update()
+    protected override void Update()
     {
         // Cache all inputs
         pendingMouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
@@ -51,7 +51,7 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         // Handle physics-based movement
         float moveX = pendingMoveX * moveSpeed * dogStrafingMultiplier;
@@ -124,5 +124,11 @@ public class FirstPersonController : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        isGrounded = true;
     }
 }
