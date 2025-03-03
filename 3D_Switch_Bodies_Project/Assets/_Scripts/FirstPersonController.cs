@@ -23,7 +23,6 @@ public class FirstPersonController : MonoBehaviour
     private bool isGrounded;
     private Vector3 cameraOriginalPosition;
     private Vector3 currentHeadBobRotation;
-    private Vector3 targetHeadBobRotation;
 
     private float pendingMouseX;
     private float pendingMouseY;
