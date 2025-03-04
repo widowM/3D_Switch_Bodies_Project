@@ -293,11 +293,11 @@ GameObject:
   - component: {fileID: 4034761955404506034}
   m_Layer: 0
   m_Name: PlayerObj
-  m_TagString: Untagged
+  m_TagString: Creature
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1109007736464500564
 Transform:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ Transform:
   m_GameObject: {fileID: 2680515373093718210}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,12 +328,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2.4323108
+  m_Center: {x: 0, y: 1.9323108, z: 0}
 --- !u!1 &3100187651383449865
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,20 +404,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3100187651383449865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef4311dbc7949334f9a4ba724814c8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creatureCameraGO: {fileID: 6700886771403561300}
   moveSpeed: 500
   orientation: {fileID: 5253022779797974591}
-  flyForce: 1.75
+  flyForce: 1.24
   slowForce: 0.5
   speedMax: 0
-  sensX: 0
-  sensY: 0
   bodyRotationSpeed: 10
-  batModel: {fileID: 5253022779797974591}
+  batModel: {fileID: 1485731556582032300}
 --- !u!1 &3667748542876704166
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 4628740858511678652}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.093, z: 0}
+  m_LocalPosition: {x: 0, y: 1.093, z: 0.43299997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -905,8 +904,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6675659453243498309}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.744, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.093, z: 0.433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -931,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7654833871314923819
 Transform:
   m_ObjectHideFlags: 0
@@ -986,7 +985,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1029,7 +1028,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

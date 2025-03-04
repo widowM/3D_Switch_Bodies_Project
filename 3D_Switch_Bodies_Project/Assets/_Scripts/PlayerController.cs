@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour
 
     public static void SwitchControl(GameObject newCreature)
     {
+        Transform cameraInitialTransform = Camera.main.transform;
+        
         if (currentControlledCreature != null)
         {
-            // Disable ALL components on the current creature
+
             foreach (var comp in currentControlledCreature.GetComponentsInChildren<MonoBehaviour>())
             {
-                if (comp is Creature || comp is BatMovementDaryl || comp is HumanMovementDaryl)
+                if (comp is Creature)
                 {
                     comp.enabled = false;
                 }
@@ -33,8 +35,7 @@ public class PlayerController : MonoBehaviour
             creature.enabled = true;
 
             // Get the specific movement component
-            var movement = currentControlledCreature.GetComponentInChildren<BatMovementDaryl>() 
-                          ?? (MonoBehaviour)currentControlledCreature.GetComponentInChildren<HumanMovementDaryl>();
+            var movement = currentControlledCreature.GetComponentInChildren<Creature>();
             
             if (movement != null)
             {

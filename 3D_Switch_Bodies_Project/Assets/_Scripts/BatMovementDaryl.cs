@@ -60,8 +60,16 @@ public class BatMovementDaryl : Creature
         base.OnEnable();
         if (!IsActiveCreature())
         {
+            rb.isKinematic = true;
             enabled = false;
         }
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        rb.isKinematic = false;
+        rb.linearVelocity = Vector3.zero;
     }
 
      private void GetInput()
@@ -88,7 +96,7 @@ public class BatMovementDaryl : Creature
             rb.AddForce(Vector3.up * (slowForce), ForceMode.Impulse);
         }
 
-        Debug.Log(rb.linearVelocity);
+       // Debug.Log(rb.linearVelocity);
     }
 
 
@@ -103,8 +111,5 @@ public class BatMovementDaryl : Creature
             rb.linearVelocity.y,
             Mathf.Clamp(rb.linearVelocity.z, -speedMax, speedMax)
         );
-
-        Vector3 frictionForce = -rb.linearVelocity * 5f; // Adjust multiplier for more/less friction
-        rb.AddForce(frictionForce, ForceMode.Force);
     }
 }
