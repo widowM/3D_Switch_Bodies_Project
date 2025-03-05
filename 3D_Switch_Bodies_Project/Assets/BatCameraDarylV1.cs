@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BatCameraDaryl : MonoBehaviour
+public class BatCameraDarylV1 : MonoBehaviour
 {
     public float sensX;
     public float sensY;

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HumanMovementDaryl : Creature
@@ -22,6 +24,21 @@ public class HumanMovementDaryl : Creature
     public float speedMax;
 
     public GameObject targetCollider;
+
+    public GameObject dotPrefab;
+    private GameObject currentDot;
+    public int numberOfRays = 1; 
+
+    public float testXValue;
+    public float testYValue;
+    public float testZValue;
+
+    public LayerMask layersToExclude;
+
+    public float delayBetweenDots = 0.05f; 
+    public float minDistance = 0.3f;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +46,7 @@ public class HumanMovementDaryl : Creature
         rb.freezeRotation = true;
 
         grounded = true;
+
     }
 
     // Update is called once per frame

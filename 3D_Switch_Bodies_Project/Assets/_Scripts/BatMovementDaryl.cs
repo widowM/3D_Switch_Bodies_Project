@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BatMovementDaryl : Creature
@@ -24,6 +26,16 @@ public class BatMovementDaryl : Creature
     public float bodyRotationSpeed = 10f;
     public Transform batModel;
 
+    [Header("Ecolocation")]
+    public GameObject dotPrefab;
+    private GameObject currentDot;
+    public int numberOfRays = 1; 
+
+    public LayerMask layersToExclude;
+
+    public float delayBetweenDots = 0.05f; 
+    public float minDistance = 0.3f;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -96,10 +108,66 @@ public class BatMovementDaryl : Creature
             rb.AddForce(Vector3.up * (slowForce), ForceMode.Impulse);
         }
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            StartCoroutine(RayWave());
+        }
        // Debug.Log(rb.linearVelocity);
     }
 
+    private IEnumerator RayWave()
+    {
+        List<RaycastHit> hitList = new List<RaycastHit>();
 
+        // Step 1: Collect all raycasts
+        for (int x = 0; x < numberOfRays; x++)
+        {
+            for (int y = 0; y < numberOfRays; y++)
+            {
+                for (int z = 0; z < numberOfRays; z++)
+                {
+                    float mappedXValue = (2f * x / numberOfRays) - 1f;
+                    float mappedYValue = (2f * y / numberOfRays) - 1f;
+                    float mappedZValue = (2f * z / numberOfRays) - 1f;
+
+                    Vector3 direction = new Vector3(mappedXValue, mappedYValue, mappedZValue).normalized;
+                    Ray ray = new Ray(transform.position, direction);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToExclude))
+                    {
+                        bool tooClose = false;
+                        foreach (var existingHit in hitList)
+                        {
+                            if (Vector3.Distance(existingHit.point, hit.point) < minDistance)
+                            {
+                                tooClose = true;
+                                break;
+                            }
+                        }
+
+                        if (!tooClose)
+                        {
+                            hitList.Add(hit);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Step 2: Sort hits by distance (closest first)
+        hitList.Sort((a, b) => a.distance.CompareTo(b.distance));
+
+        // Step 3: Instantiate dots one by one with a delay
+        foreach (var hit in hitList)
+        {
+            GameObject currentDot = Instantiate(dotPrefab, hit.point, Quaternion.identity);
+            currentDot.transform.up = hit.normal; // Align the dot with the surface
+
+            yield return new WaitForSeconds(delayBetweenDots); // Small delay to create wave effect
+        }
+    }
+    
     private void MovePlayer()
     {
         // calculate movement direction

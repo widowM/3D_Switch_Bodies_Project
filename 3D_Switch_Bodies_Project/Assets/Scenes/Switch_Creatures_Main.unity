@@ -470,7 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497572844}
   - component: {fileID: 497572845}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerObj
   m_TagString: Creature
   m_Icon: {fileID: 0}
@@ -2559,7 +2559,7 @@ Transform:
   m_GameObject: {fileID: 2090457593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.407574, y: -0.32382452, z: 2.7097602}
+  m_LocalPosition: {x: 23.11, y: -0.32382452, z: -9.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2946,6 +2946,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3598184304280235188, guid: 512bb15e44c030f45b84a8ae38a88916, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3691968693345339263, guid: 512bb15e44c030f45b84a8ae38a88916, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2989,6 +2993,10 @@ PrefabInstance:
     - target: {fileID: 7465320713011559965, guid: 512bb15e44c030f45b84a8ae38a88916, type: 3}
       propertyPath: m_Name
       value: SwitchMechanic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7465320713011559965, guid: 512bb15e44c030f45b84a8ae38a88916, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7712737084346608959, guid: 512bb15e44c030f45b84a8ae38a88916, type: 3}
       propertyPath: m_Enabled
@@ -3068,6 +3076,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2680515373093718210, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: m_Name
+      value: BatPlayerObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680515373093718210, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680515373093718210, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683053766107672398, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: dotPrefab
+      value: 
+      objectReference: {fileID: 395028831927842263, guid: 807ee5ce490b79542ae0c6a205dd7b34, type: 3}
+    - target: {fileID: 6683053766107672398, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683053766107672398, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: numberOfRays
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683053766107672398, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: delayBetweenDots
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683053766107672398, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: layersToExclude.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700886771403561300, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7183230723948309311, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.03
@@ -3112,6 +3156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 8944879011000155128, guid: ea1a8b77c73516c4c921d6bca9511bae, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3125,6 +3173,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 823659264148402666, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: dotPrefab
+      value: 
+      objectReference: {fileID: 395028831927842263, guid: 807ee5ce490b79542ae0c6a205dd7b34, type: 3}
+    - target: {fileID: 823659264148402666, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: minDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 823659264148402666, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: numberOfRays
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 823659264148402666, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: delayBetweenDots
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 823659264148402666, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: layersToExclude.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878453591316608764, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: m_Name
+      value: HumanPlayerObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878453591316608764, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3358681804730819753, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.6
@@ -3165,9 +3241,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4947540547343355994, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7449553256316382043, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
       propertyPath: m_Name
       value: Human
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449553256316382043, guid: 54552fdbe2db7e84fbcd0429519224fe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
