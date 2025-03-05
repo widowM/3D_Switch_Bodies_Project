@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Creature
+  - Living
   layers:
   - Default
   - TransparentFX

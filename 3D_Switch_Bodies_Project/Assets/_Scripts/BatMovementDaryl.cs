@@ -36,6 +36,9 @@ public class BatMovementDaryl : Creature
     public float delayBetweenDots = 0.05f; 
     public float minDistance = 0.3f;
     
+    private List<GameObject> existingDots = new List<GameObject>(); // Track active dots
+    public int maxDots = 100;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -115,42 +118,25 @@ public class BatMovementDaryl : Creature
        // Debug.Log(rb.linearVelocity);
     }
 
-    private IEnumerator RayWave()
+    private IEnumerator  RayWave()
     {
         List<RaycastHit> hitList = new List<RaycastHit>();
+        HashSet<Vector3> hitPoints = new HashSet<Vector3>();
+        WaitForSeconds wait = new WaitForSeconds(delayBetweenDots);
 
-        // Step 1: Collect all raycasts
-        for (int x = 0; x < numberOfRays; x++)
+        Vector3 origin = transform.position;
+
+        for (int i = 0; i < numberOfRays * numberOfRays; i++)  // Reduce iteration count
         {
-            for (int y = 0; y < numberOfRays; y++)
+            Vector3 direction = Random.insideUnitSphere.normalized; 
+            Ray ray = new Ray(transform.position, direction);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToExclude))
             {
-                for (int z = 0; z < numberOfRays; z++)
+                if (hitPoints.Add(hit.point)) // HashSet avoids duplicates automatically
                 {
-                    float mappedXValue = (2f * x / numberOfRays) - 1f;
-                    float mappedYValue = (2f * y / numberOfRays) - 1f;
-                    float mappedZValue = (2f * z / numberOfRays) - 1f;
-
-                    Vector3 direction = new Vector3(mappedXValue, mappedYValue, mappedZValue).normalized;
-                    Ray ray = new Ray(transform.position, direction);
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~layersToExclude))
-                    {
-                        bool tooClose = false;
-                        foreach (var existingHit in hitList)
-                        {
-                            if (Vector3.Distance(existingHit.point, hit.point) < minDistance)
-                            {
-                                tooClose = true;
-                                break;
-                            }
-                        }
-
-                        if (!tooClose)
-                        {
-                            hitList.Add(hit);
-                        }
-                    }
+                    hitList.Add(hit);
                 }
             }
         }
@@ -161,10 +147,25 @@ public class BatMovementDaryl : Creature
         // Step 3: Instantiate dots one by one with a delay
         foreach (var hit in hitList)
         {
+            if (existingDots.Count >= maxDots)
+            {
+                Destroy(existingDots[0]); // Destroy the oldest dot
+                existingDots.RemoveAt(0);
+            }
+
             GameObject currentDot = Instantiate(dotPrefab, hit.point, Quaternion.identity);
             currentDot.transform.up = hit.normal; // Align the dot with the surface
 
-            yield return new WaitForSeconds(delayBetweenDots); // Small delay to create wave effect
+            if (hit.collider.CompareTag("Living"))
+            {
+                currentDot.GetComponent<Renderer>().material.color = Color.red; // Set to red
+            }
+            else
+            {
+                currentDot.GetComponent<Renderer>().material.color = Color.white; // Set to black
+            }
+
+            yield return wait; // Small delay to create wave effect
         }
     }
     
